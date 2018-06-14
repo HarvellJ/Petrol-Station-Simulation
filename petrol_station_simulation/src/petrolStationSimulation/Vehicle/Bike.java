@@ -1,5 +1,5 @@
 package petrolStationSimulation.Vehicle;
 
-public class Bike {
+public class Bike extends Vehicle {
 
 }
