@@ -6,35 +6,75 @@ public class PetrolStation {
 		//default values		
 	}
 	
-	public PetrolStation(int numberOfPumps, boolean trucksAllowed, ShoppingArea shop) {
+	public PetrolStation(int numberOfPumps, boolean trucksAllowed, ShoppingArea shop, int probabilityQ, 
+			int probabilityP, double pricePerGallon, int simulationDuration) {
 		pumps = new Pump[numberOfPumps];
+		initializePumps();
 		this.shop = shop;
-		SetupPumps();
+		this.trucksAllowed = trucksAllowed;
+		this.simulationDuration = simulationDuration;
+		this.probabilityQ = probabilityQ;
+		this.probabilityP = probabilityP;
+		this.pricePerGallon = pricePerGallon;
 	}
 	
-	protected Pump[] pumps;	
-	protected ShoppingArea shop;
-	protected boolean trucksAllowed;
+	private ShoppingArea shop;
+	private Pump[] pumps;	
+	private boolean trucksAllowed;
+	private double probabilityQ;
+	private double probabilityP;
+	private double pricePerGallon;
+	private int simulationDuration;
 	
-	public ShoppingArea Shop() {
+	private void initializePumps() {
+		for(int i = 0; i < pumps.length; i++) {
+			pumps[i] = new Pump();
+		}
+	}
+	
+	public ShoppingArea GetShop() {
 		return shop;
 	}
 	
-	public Pump[] Pumps() {
+	public Pump[] GetPumps() {
 		return pumps;
 	}
 	
-	public void SetupPumps() {
-		// positions to space pumps apart
-		int currentX = 0;
-		int currentY = 10;
-		for(int i = 0; i < pumps.length; i++) {
-			pumps[i] = new Pump(currentX, currentY);
-			currentX =+ 50;
-			if(currentX - 200 == 0) {
-				currentX = 0;
-				currentY += 60;
-			}
-		}
+	public boolean TrucksAllowed() {
+		return trucksAllowed;
 	}
+	
+
+	public double getProbabilityQ() {
+		return probabilityQ;
+	}
+
+	public void setProbabilityQ(double probabilityQ) {
+		this.probabilityQ = probabilityQ;
+	}
+
+	public double getProbabilityP() {
+		return probabilityP;
+	}
+
+	public void setProbabilityP(double probabilityP) {
+		this.probabilityP = probabilityP;
+	}
+
+	public double getPricePerGallon() {
+		return pricePerGallon;
+	}
+
+	public void setPricePerGallon(double pricePerGallon) {
+		this.pricePerGallon = pricePerGallon;
+	}
+
+	public int getSimulationDuration() {
+		return simulationDuration;
+	}
+
+	public void setSimulationDuration(int simulationDuration) {
+		this.simulationDuration = simulationDuration;
+	}
+	
 }

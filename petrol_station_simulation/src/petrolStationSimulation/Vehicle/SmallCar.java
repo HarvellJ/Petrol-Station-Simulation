@@ -1,8 +1,8 @@
 package petrolStationSimulation.Vehicle;
 
-public class Motorbike extends Bike {
+public class SmallCar extends Car{
 	public String VehicleDescription() {
-		return "Motorbike";
+		return "Small car";
 	}
 	
 }

@@ -2,7 +2,7 @@ package petrolStationSimulation.Vehicle;
 
 import petrolStationSimulation.Person.Person;
 
-public class Vehicle implements IVehicle {
+public abstract class Vehicle implements IVehicle {
 
 	public Vehicle() {
 		driver = new Person();
@@ -10,4 +10,8 @@ public class Vehicle implements IVehicle {
 	
 	protected Person driver;
 	
+	protected double units;
+	
+	
+	public abstract String VehicleDescription();
 }
