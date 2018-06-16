@@ -32,6 +32,10 @@ public class IntroductionUI implements IFormWrapper{
 		   btn_startButton = UIHelper.createStandardButton("Start");
 		   frameIntroduction.add(btn_startButton);
 	        
+		   txt_numOfPumps = new JTextField();
+		   lbl_numOfPumps = new JLabel();
+		   lbl_trucksEnabled = new JLabel();
+		   
 	       txt_numOfPumps.setEditable(true);
 	       txt_numOfTills.setEditable(true);
 	       lbl_numOfPumps.setText("Number of Pumps:");

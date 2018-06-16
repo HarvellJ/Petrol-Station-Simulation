@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import petrolStationSimulation.PetrolStation.PetrolStation;
+import petrolStationSimulation.PetrolStation.ShoppingArea;
 import petrolStationSimulation.UI.IntroductionUI;
-import petrolStationSimulation.UI.PetrolStationUI;
+import petrolStationSimulation.UI.SimulationView;
 
 import java.awt.Color;
 import javax.swing.JRadioButton;
@@ -26,7 +28,7 @@ public class PetrolStationSimulation {
 	public int numberOfTills;
 	public boolean trucksAllowed;
 	public IntroductionUI introductionForm;
-	public PetrolStationUI petrolStationForm;
+	public SimulationView petrolStationSimulationView;
 
 	/**
 	 * Launch the application.
@@ -62,12 +64,16 @@ public class PetrolStationSimulation {
         @Override
         public void actionPerformed(ActionEvent e) {
         	// check for presence of form values - if none present, just use default constructor
-        	introductionForm.GetForm().setVisible(false);
-        	petrolStationForm = introductionForm.IsValid() ?
-        			new PetrolStationUI(Integer.parseInt(introductionForm.txt_numOfPumps.getText()), 
-        					            Integer.parseInt(introductionForm.txt_numOfTills.getText()), 
-        					            introductionForm.chk_trucksEnabled.isSelected()) : new PetrolStationUI();
-    	
+        	
+        	if(introductionForm.IsValid()) {
+            	introductionForm.GetForm().setVisible(false);
+        		ShoppingArea shop = new ShoppingArea(Integer.parseInt(introductionForm.txt_numOfTills.getText()));
+            	PetrolStation petrolStation = new PetrolStation(
+            			Integer.parseInt(introductionForm.txt_numOfPumps.getText()), 
+			            introductionForm.chk_trucksEnabled.isSelected(),
+            			shop);  
+            	SimulationView view = new SimulationView(petrolStation);
+        	}   	
         }
     }
 }
