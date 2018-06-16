@@ -9,7 +9,7 @@ public class PetrolStation {
 	public PetrolStation(int numberOfPumps, boolean trucksAllowed, ShoppingArea shop, int probabilityQ, 
 			int probabilityP, double pricePerGallon, int simulationDuration) {
 		pumps = new Pump[numberOfPumps];
-		initializePumps();
+		InitializePumps();
 		this.shop = shop;
 		this.trucksAllowed = trucksAllowed;
 		this.simulationDuration = simulationDuration;
@@ -26,7 +26,7 @@ public class PetrolStation {
 	private double pricePerGallon;
 	private int simulationDuration;
 	
-	private void initializePumps() {
+	private void InitializePumps() {
 		for(int i = 0; i < pumps.length; i++) {
 			pumps[i] = new Pump();
 		}

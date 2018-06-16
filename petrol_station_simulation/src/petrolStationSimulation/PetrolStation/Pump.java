@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import petrolStationSimulation.Vehicle.Vehicle;
 
-public class Pump implements IPump{
+public class Pump{
 
 	public Pump() {
 		queue = new ArrayList<Vehicle>();
@@ -25,7 +25,7 @@ public class Pump implements IPump{
 		queue.remove(0);
 	}
 	
-	public Vehicle GetCurrentVehicle() {
+	public Vehicle GetCurrentActiveVehicle() {
 		if (queue.size() > 0) {
 			return queue.get(0);
 		}else {

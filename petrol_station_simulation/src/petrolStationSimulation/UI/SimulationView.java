@@ -62,8 +62,8 @@ public class SimulationView implements ISimulationView{
 		// use this method to declare a consistent frame
 		System.out.println("");
 		System.out.println("============= Pump  =============");
-		if(pump.GetCurrentVehicle() != null) {
-			System.out.println("Current Vehicle: " + pump.GetCurrentVehicle().VehicleDescription());
+		if(pump.GetCurrentActiveVehicle() != null) {
+			System.out.println("Current Vehicle: " + pump.GetCurrentActiveVehicle().VehicleDescription());
 
 		}else {
 			System.out.println("Pump is currently empty");
