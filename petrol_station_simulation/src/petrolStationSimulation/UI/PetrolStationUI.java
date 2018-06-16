@@ -12,10 +12,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-public class PetrolStationUI {
+public class PetrolStationUI implements IFormWrapper{
 	
 	public PetrolStationUI() {
-		
+		initializeForm(4,2,false);
+	}
+	
+	public PetrolStationUI(int numberOfPumps, int numberOfTills, boolean allowTrucks) {
+		initializeForm(numberOfPumps, numberOfTills, allowTrucks);
 	}
 	
 	    // petrol station page
@@ -43,9 +47,10 @@ public class PetrolStationUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializePetrolForm() {
+	private void initializeForm(int numberOfPumps, int numberOfTills, boolean allowTrucks) {
 		framePetrolStation = UIHelper.initializeStandardFrame();
 		
+		// add shopping area
 		JPanel panel_shopping_area = new JPanel();
 		panel_shopping_area.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel_shopping_area.setBounds(10, 92, 288, 228);
@@ -85,6 +90,21 @@ public class PetrolStationUI {
 		JLabel lblShoppingArea = new JLabel("Shopping Area");
 		lblShoppingArea.setBounds(98, 11, 70, 14);
 		panel_shopping_area.add(lblShoppingArea);
+		
+		// add tills to shopping area
+		for(int i = 0; i < numberOfTills; i++) {
+			
+		}
+		
+		// add pumps to form
+		for(int i = 0; i < numberOfPumps; i++) {
+			
+		}
+		
+		// build up remainder of form - simulation information labels etc...
+	
+		
+		
 		
 		JPanel panel_total = new JPanel();
 		panel_total.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -322,7 +342,7 @@ public class PetrolStationUI {
 		panel_config.add(btn_Stop);
 	}
 	
-	public JFrame getFramePetrolStation(){
+	public JFrame GetForm(){
 		return framePetrolStation;
 	}	
 }

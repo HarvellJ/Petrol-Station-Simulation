@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import petrolStationSimulation.UI.IntroductionUI;
+import petrolStationSimulation.UI.PetrolStationUI;
 
 import java.awt.Color;
 import javax.swing.JRadioButton;
@@ -25,7 +26,7 @@ public class PetrolStationSimulation {
 	public int numberOfTills;
 	public boolean trucksAllowed;
 	public IntroductionUI introductionForm;
-	public JFrame petrolStationForm;
+	public PetrolStationUI petrolStationForm;
 
 	/**
 	 * Launch the application.
@@ -35,6 +36,8 @@ public class PetrolStationSimulation {
 			public void run() {
 				try {
 					PetrolStationSimulation simulation = new PetrolStationSimulation();
+					
+				    
 					//simulation.introductionForm.setVisible(true);
 					
 
@@ -58,7 +61,13 @@ public class PetrolStationSimulation {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        	
+        	// check for presence of form values - if none present, just use default constructor
+        	introductionForm.GetForm().setVisible(false);
+        	petrolStationForm = introductionForm.IsValid() ?
+        			new PetrolStationUI(Integer.parseInt(introductionForm.txt_numOfPumps.getText()), 
+        					            Integer.parseInt(introductionForm.txt_numOfTills.getText()), 
+        					            introductionForm.chk_trucksEnabled.isSelected()) : new PetrolStationUI();
+    	
         }
     }
 }

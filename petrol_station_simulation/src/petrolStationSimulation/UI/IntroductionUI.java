@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 //Factory class - sets up an introducton form instance
-public class IntroductionUI {
+public class IntroductionUI implements IFormWrapper{
 	
 	public IntroductionUI() {
 		InitializeForm();
@@ -39,8 +39,11 @@ public class IntroductionUI {
 	       lbl_trucksEnabled.setText("Enable Trucks?");
 		}
 
-
-		public JFrame getForm() {
+		public boolean IsValid() {
+		 return (txt_numOfPumps.getText() != "" && txt_numOfTills.getText() != "");
+		}
+		
+		public JFrame GetForm() {
 			return frameIntroduction;
 		}
 	

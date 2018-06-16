@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import petrolStationSimulation.Vehicle.Vehicle;
 
-public class Pump {
+public class Pump implements IPump{
 
 	public Pump() {
 		queue = new ArrayList<Vehicle>();
