@@ -13,6 +13,13 @@ public class Truck extends Vehicle {
 	}
 	
 	public void setDriverMood() {
-		super.getDriver().setHappy(true);
+		if(super.getExistedFor() > 640) {
+			Random r = new Random();
+			if(r.nextDouble() <= 0.3) {
+				super.getDriver().setHappy(true);
+			}else {
+				super.getDriver().setHappy(false);
+			}
+		}
 	}
 }

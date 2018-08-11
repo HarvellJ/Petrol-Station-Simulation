@@ -59,12 +59,14 @@ public class PetrolStationSimulation {
 					int tickTime = sc.nextInt();
 					System.out.print("Please enter a price per gallon (double):");
 					double pricePerGallon = sc.nextDouble();	
+					System.out.print("Please enter a random seed (number):");
+					long randSeed = sc.nextLong();	
 					
 					ShoppingArea shop = new ShoppingArea(numOfTills);
 				    simulation.petrolStation = new PetrolStation(numOfPumps, trucksAllowed, shop,
 							pricePerGallon);
 					
-				    PetrolStationSimulator petrolStationSimulator = new PetrolStationSimulator(simulation.petrolStation, probabilitySmallCarsAndBikes, probabilityFamilySedan);				    				    
+				    PetrolStationSimulator petrolStationSimulator = new PetrolStationSimulator(simulation.petrolStation, probabilitySmallCarsAndBikes, probabilityFamilySedan, trucksAllowed, randSeed);				    				    
 				    
 				    Simulator simulator = new Simulator(duration, tickTime, petrolStationSimulator);
 					

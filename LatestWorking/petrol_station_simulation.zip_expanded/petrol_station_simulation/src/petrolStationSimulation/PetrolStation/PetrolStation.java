@@ -47,4 +47,14 @@ public class PetrolStation {
 		this.pricePerGallon = pricePerGallon;
 	}
 	
+	public Pump getPumpWithShortestQueue() {
+		Pump shortestQueuedPump = pumps[0]; //Default to first pump 
+		for(Pump pump : pumps) {
+			if(shortestQueuedPump.getQueue().size() > pump.getQueue().size()) {
+				shortestQueuedPump = pump;
+			}
+		}
+		return shortestQueuedPump;
+	}
+	
 }

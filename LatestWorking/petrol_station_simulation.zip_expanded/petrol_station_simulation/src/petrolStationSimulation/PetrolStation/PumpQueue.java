@@ -113,6 +113,9 @@ public class PumpQueue extends ArrayListQueue<Vehicle> {
 		this.timeActiveVehicleAtPump += tickTime;
 	}
 	
+	/**
+	 * Updates the drivers mood
+	 */
 	public void updateDriversMoods() {
 		for(Vehicle vehicle : this.queue) {
 			vehicle.setDriverMood();
