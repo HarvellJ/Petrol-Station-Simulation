@@ -2,31 +2,11 @@ package petrolStationSimulation;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import petrolStationSimulation.PetrolStation.PetrolStation;
 import petrolStationSimulation.PetrolStation.ShoppingArea;
 import petrolStationSimulation.UI.SimulationView;
-import petrolStationSimulation.Vehicle.Car;
-import petrolStationSimulation.Vehicle.Motorbike;
-import petrolStationSimulation.Vehicle.SmallCar;
-
-import java.awt.Color;
-import javax.swing.JRadioButton;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-
-import java.awt.event.ActionListener;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import simulator.Simulator;
 public class PetrolStationSimulation {	
 	
@@ -92,17 +72,4 @@ public class PetrolStationSimulation {
 			}
 		});
 	}
-
-//	public void InitializePetrolStation(PetrolStation petrolStation) {
-//		Random r = new Random();
-//		for(int i = 0; i < petrolStation.GetPumps().length; i++) {
-//			//to start, just add one car to each pump
-//			petrolStation.GetPumps()[i].Enqueue(new SmallCar());
-//			int rand = r.nextInt(2);
-//			if(rand > 0) {
-//				petrolStation.GetPumps()[i].Enqueue(new Motorbike());
-//			}
-//			
-//		};
-//	}	
 }

@@ -46,7 +46,6 @@ public class Simulator {
 				System.out.println("Seconds passed: " + secondsPassed);
 				if(secondsPassed%tickTime==0) {
 					simulationObject.tick(tickTime);
-					System.out.println(" tick activated");
 				}
 			}
 			else {

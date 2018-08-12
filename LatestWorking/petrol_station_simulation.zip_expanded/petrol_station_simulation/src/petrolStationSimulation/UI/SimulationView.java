@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import petrolStationSimulation.PetrolStation.PetrolStation;
 import petrolStationSimulation.PetrolStation.Pump;
 import petrolStationSimulation.PetrolStation.ShoppingArea;
+import petrolStationSimulation.PetrolStation.Till;
 
 public class SimulationView implements ISimulationView{
 	
@@ -54,7 +55,12 @@ public class SimulationView implements ISimulationView{
 	private static void PrintShop(ShoppingArea shop) {
 		System.out.println("================== Shopping Area  ===================");
 		System.out.println("Number of Tills: " + shop.getTills().length);
-		System.out.println("Current Customers: " + shop.getCustomers().size());
+		int i = 1;
+		for(Till till : shop.getTills()) {
+			System.out.println("till " + i + " queue size: " + till.getQueue().size());
+			i++;
+		}
+		System.out.println("Current Customers in Shop: " + shop.getCustomers().size());
 		System.out.println("=====================================================");
 	}
 	
@@ -69,7 +75,7 @@ public class SimulationView implements ISimulationView{
 			System.out.println("Pump is currently empty");
 
 		}
-		System.out.println("Queue Size " + pump.getQueue().size());
+		System.out.println("Number of vehicles in queue: " + pump.getQueue().size());
 		System.out.println("=================================");
 	}
 	

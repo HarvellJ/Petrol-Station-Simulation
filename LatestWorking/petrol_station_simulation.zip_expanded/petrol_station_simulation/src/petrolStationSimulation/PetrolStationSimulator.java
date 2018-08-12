@@ -64,8 +64,8 @@ public class PetrolStationSimulator implements ISimulationObject{
 
 		// print results
 		SimulationView.RenderCurrentState(this.petrolStation);
-		System.out.println(moneyMade);
-		System.out.println(moneyLost);
+		System.out.println("Total money made: " + moneyMade);
+		System.out.println("Total money lost: " + moneyLost);
 
 	}
 

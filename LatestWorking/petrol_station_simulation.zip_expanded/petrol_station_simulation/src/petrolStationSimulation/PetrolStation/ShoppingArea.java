@@ -2,17 +2,17 @@ package petrolStationSimulation.PetrolStation;
 
 import java.util.ArrayList;
 
-import petrolStationSimulation.Person.Customer;
+import petrolStationSimulation.Person.Person;
 
 public class ShoppingArea {
 	
 	private Till[] tills;
-	private ArrayList<Customer> customers;
+	private ArrayList<Person> customers;
 	
 	public ShoppingArea(int amountOfTills) {
 		setTills(new Till[amountOfTills]);
 		this.initializeTills();
-		customers = new ArrayList<Customer>();
+		customers = new ArrayList<Person>();
 	}
 	
 	public Till[] getTills() {
@@ -23,7 +23,7 @@ public class ShoppingArea {
 		this.tills = tills;
 	}
 
-	public ArrayList<Customer> getCustomers() {
+	public ArrayList<Person> getCustomers() {
 		return customers;
 	}
 
@@ -33,7 +33,7 @@ public class ShoppingArea {
 		}
 	}
 	
-	public void AddCustomer(Customer customer) {
+	public void AddCustomer(Person customer) {
 		this.customers.add(customer);
 	}
 	
