@@ -45,32 +45,26 @@ public class Main extends Application {
 	}
 	
 	private GridPane createConfigurationForm() {
-		// Instantiate a new Grid Pane
-	    GridPane gridPane = new GridPane();
 
-	    // Position the pane at the center of the screen, both vertically and horizontally
+		GridPane gridPane = new GridPane();
+
 	    gridPane.setAlignment(Pos.CENTER);
 
-	    // Set a padding of 20px on each side
 	    gridPane.setPadding(new Insets(40, 40, 40, 40));
-
-	    // Set the horizontal gap between columns
-	    gridPane.setHgap(10);
 
 	    // Set the vertical gap between rows
 	    gridPane.setVgap(6);
+	    
+	    // Set the horizontal gap between columns
+	    gridPane.setHgap(10);
 
-	    // Add Column Constraints
+	    ColumnConstraints columnConstraintsFirst = new ColumnConstraints(200, 200, Double.MAX_VALUE);
+	    columnConstraintsFirst.setHalignment(HPos.RIGHT);
 
-	    // columnOneConstraints will be applied to all the nodes placed in column one.
-	    ColumnConstraints columnOneConstraints = new ColumnConstraints(200, 200, Double.MAX_VALUE);
-	    columnOneConstraints.setHalignment(HPos.RIGHT);
+	    ColumnConstraints columnConstraintsSecond = new ColumnConstraints(100,100, Double.MAX_VALUE);
+	    columnConstraintsSecond.setHgrow(Priority.ALWAYS);
 
-	    // columnTwoConstraints will be applied to all the nodes placed in column two.
-	    ColumnConstraints columnTwoConstrains = new ColumnConstraints(100,100, Double.MAX_VALUE);
-	    columnTwoConstrains.setHgrow(Priority.ALWAYS);
-
-	    gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
+	    gridPane.getColumnConstraints().addAll(columnConstraintsFirst, columnConstraintsSecond);
 	    
 	    return gridPane;
 	}
@@ -196,16 +190,8 @@ public class Main extends Application {
 				
 			 	simulator.startSimulation();	
             	
-//                if(nameField.getText().isEmpty()) {
-//                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your name");
-//                    return;
-//                }
-//                if(emailField.getText().isEmpty()) {
-//                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your email id");
-//                    return;
-//                }
-//                if(passwordField.getText().isEmpty()) {
-//                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter a password");
+//                if(configuredNumberOfTills.getText().isEmpty()) {
+//                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "error", "Please enter value for configuredNumberOfTills");
 //                    return;
 //                }
 
