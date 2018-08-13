@@ -12,25 +12,25 @@ public class Simulator {
 	private ISimulationObject simulationObject;
 	
 	private int secondsPassed = 0;
-	
-    Timer timer = new Timer();
-    TimerTask task = new TimerTask() {				    	
-    	public void run() { 	
-    		if(secondsPassed<duration) {
-    		secondsPassed++;
-    		System.out.println("Seconds passed: " + secondsPassed);
-    		if(secondsPassed%tickTime==0) {
-        		simulationObject.tick(tickTime);
-    			System.out.println(" tick activated");
-    		}
-    		}
-    		else {
-    			System.out.println("Simulation timer finished, ending simulation...");
-    			   timer.cancel();
-    		       timer.purge();
-    		}
-    	}
-    };
+//	
+//    Timer timer = new Timer();
+//    TimerTask task = new TimerTask() {				    	
+//    	public void run() { 	
+//    		if(secondsPassed<duration) {
+//    		secondsPassed++;
+//    		System.out.println("Seconds passed: " + secondsPassed);
+//    		if(secondsPassed%tickTime==0) {
+//        		simulationObject.tick(tickTime);
+//    			System.out.println(" tick activated");
+//    		}
+//    		}
+//    		else {
+//    			System.out.println("Simulation timer finished, ending simulation...");
+//    			   timer.cancel();
+//    		       timer.purge();
+//    		}
+//    	}
+//    };
 	
 	public Simulator(int duration, int tickTime, ISimulationObject simulationObject) {
 		this.duration = duration;
@@ -39,7 +39,6 @@ public class Simulator {
 	}
 	
 	public void startSimulation() {
-		//this.timer.scheduleAtFixedRate(task, 1000, 1000);
 		for(int i = 0; i < duration; i++) {
 			if(secondsPassed<duration) {
 				secondsPassed++;
@@ -47,11 +46,9 @@ public class Simulator {
 				if(secondsPassed%tickTime==0) {
 					simulationObject.tick(tickTime);
 				}
-			}
-			else {
-				System.out.println("Simulation timer finished, ending simulation...");	    
-			}
+			}		
 		}
+		simulationObject.writeResultToFile();
 	}
 	
 	

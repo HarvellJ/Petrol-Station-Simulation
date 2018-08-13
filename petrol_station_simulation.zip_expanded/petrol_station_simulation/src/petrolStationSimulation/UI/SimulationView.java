@@ -1,23 +1,11 @@
 package petrolStationSimulation.UI;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-
 import petrolStationSimulation.PetrolStation.PetrolStation;
 import petrolStationSimulation.PetrolStation.Pump;
 import petrolStationSimulation.PetrolStation.ShoppingArea;
 import petrolStationSimulation.PetrolStation.Till;
 
-public class SimulationView implements ISimulationView{
+public class SimulationView {
 	
 	public SimulationView() {
 
@@ -30,53 +18,58 @@ public class SimulationView implements ISimulationView{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public static void RenderCurrentState(PetrolStation petrolStation) {	
-		
+	public static String renderCurrentState(PetrolStation petrolStation) {	
+		String retVal = "";
 		// add shopping area
-	    PrintShop(petrolStation.GetShop());
+		retVal += "========================================================= " + System.getProperty("line.separator");
+	    retVal += printShop(petrolStation.GetShop());
 		
 		// add pumps to form
 		for(Pump pump : petrolStation.GetPumps()) {	
-			PrintPump(pump);
+			retVal += printPump(pump);
 		}
-				
 		
+		retVal += "========================================================= " + System.getProperty("line.separator");
+		return retVal;
 	}
 	
-	public static void PrintPetrolStationConfiguration(PetrolStation petrolStation) {
-		System.out.println("Petrol station information:");
-		System.out.println("Number of pumps:" + petrolStation.GetPumps().length);
-		System.out.println("Number of tills: " + petrolStation.GetShop().getTills().length);
-		System.out.println("Trucks allows: " + petrolStation.TrucksAllowed());
-		System.out.println("Beginning simulation...");
-
+	public static String printPetrolStationConfiguration(PetrolStation petrolStation) {
+		String retVal = "";
+		retVal += "Petrol station information: " + System.getProperty("line.separator");
+		retVal += "Number of pumps:" + petrolStation.GetPumps().length + System.getProperty("line.separator");
+		retVal += "Number of tills: " + petrolStation.GetShop().getTills().length + System.getProperty("line.separator");
+		retVal += "Trucks allows: " + petrolStation.TrucksAllowed() + System.getProperty("line.separator");
+		return retVal;
 	}
 	
-	private static void PrintShop(ShoppingArea shop) {
-		System.out.println("================== Shopping Area  ===================");
-		System.out.println("Number of Tills: " + shop.getTills().length);
+	private static String printShop(ShoppingArea shop) {
+		String retVal = "" + System.getProperty("line.separator");
+		retVal += "================== Shopping Area  ===================" +System.getProperty("line.separator");
+		retVal += "Number of Tills: " + shop.getTills().length + System.getProperty("line.separator");
 		int i = 1;
 		for(Till till : shop.getTills()) {
-			System.out.println("till " + i + " queue size: " + till.getQueue().size());
+			retVal += "till " + i + " queue size: " + till.getQueue().size() +System.getProperty("line.separator");
 			i++;
 		}
-		System.out.println("Current Customers in Shop: " + shop.getCustomers().size());
-		System.out.println("=====================================================");
+		retVal += "Current Customers in Shop: " + shop.getCustomers().size() +System.getProperty("line.separator");
+		retVal += "====================================================="+System.getProperty("line.separator");
+		return retVal;
 	}
 	
-	private static void PrintPump(Pump pump) {
-		// use this method to declare a consistent frame
-		System.out.println("");
-		System.out.println("============= Pump  =============");
+	private static String printPump(Pump pump) {
+		String retVal = "";
+		retVal += System.getProperty("line.separator");
+		retVal += "============= Pump  =============" + System.getProperty("line.separator");
 		if(pump.getCurrentActiveVehicle() != null) {
-			System.out.println("Current Vehicle: " + pump.getCurrentActiveVehicle().vehicleDescription());
+			retVal += "Current Vehicle: " + pump.getCurrentActiveVehicle().vehicleDescription() + System.getProperty("line.separator");
 
 		}else {
-			System.out.println("Pump is currently empty");
+			retVal += "Pump is currently empty" + System.getProperty("line.separator");
 
 		}
-		System.out.println("Number of vehicles in queue: " + pump.getQueue().size());
-		System.out.println("=================================");
-	}
+		retVal += "Number of vehicles in queue: " + pump.getQueue().size() + System.getProperty("line.separator");
+		retVal += "=================================" + System.getProperty("line.separator");
+		return retVal;
+	} 
 	
 }

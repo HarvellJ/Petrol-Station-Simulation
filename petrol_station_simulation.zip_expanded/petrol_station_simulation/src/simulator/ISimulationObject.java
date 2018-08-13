@@ -1,5 +1,8 @@
 package simulator;
 
+/**
+ * Defines the interface for a simulation object
+ */
 public interface ISimulationObject {
 
 	/**
@@ -8,4 +11,8 @@ public interface ISimulationObject {
 	 */
 	void tick(int tickTime);
 		
+	/**
+	 * This method writes the results of the simulationObject to a file
+	 */
+	void writeResultToFile();
 }

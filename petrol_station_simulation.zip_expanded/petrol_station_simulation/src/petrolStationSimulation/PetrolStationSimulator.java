@@ -8,6 +8,8 @@ import petrolStationSimulation.Vehicle.Truck;
 import petrolStationSimulation.Vehicle.Vehicle;
 import petrolStationSimulation.Vehicle.VehicleFactory;
 import simulator.ISimulationObject;
+import java.io.IOException;
+
 
 public class PetrolStationSimulator implements ISimulationObject{
 
@@ -18,6 +20,9 @@ public class PetrolStationSimulator implements ISimulationObject{
 	private double moneyMade;
 	private double moneyLost;
 	
+	private String simulationOutput;
+	private FileWriterHelper fileWriter;
+	
 	/**
 	 * sets up the variables of the simulation
 	 * @param petrolStation The PetrolStation object on which the simulation will be ran
@@ -27,11 +32,35 @@ public class PetrolStationSimulator implements ISimulationObject{
 	 * @param generateTrucks The setting to determine whether or not to include trucks in this simulation
 	 */
 	public PetrolStationSimulator(PetrolStation petrolStation, double probabilitySmallCarsAndBikes, double probabilityFamilySedan,
-			boolean generateTrucks, long randomSeed) {
+			boolean generateTrucks, long randomSeed, String filePath) {
 		this.petrolStation = petrolStation;
 		this.vehicleFactory = new VehicleFactory(probabilitySmallCarsAndBikes, probabilityFamilySedan, generateTrucks, randomSeed);
+		this.fileWriter = new FileWriterHelper(filePath);
 	}
 	
+	/**
+	 * @return an instance of the PetrolStation object that is the subject of this simulation
+	 */
+	public PetrolStation getResult() {
+		// TODO Auto-generated method stub
+		return petrolStation;
+	}
+	/**
+	 * gets the simulation output
+	 * @return the simulation output
+	 */
+	public String getSimulationOutput() {
+		return simulationOutput;
+	}
+
+	/**
+	 * sets the simulation output
+	 * @param simulationOutput the simulation output
+	 */
+	public void setSimulationOutput(String simulationOutput) {
+		this.simulationOutput = simulationOutput;
+	}
+
 	/* (non-Javadoc)
 	 * @see simulator.ISimulationObject#tick()
 	 */
@@ -63,13 +92,38 @@ public class PetrolStationSimulator implements ISimulationObject{
 		this.ageTillQueues(tickTime);
 
 		// print results
-		SimulationView.RenderCurrentState(this.petrolStation);
+		
+		String output = SimulationView.renderCurrentState(this.petrolStation);
+		System.out.print(output);
 		System.out.println("Total money made: " + moneyMade);
 		System.out.println("Total money lost: " + moneyLost);
-
+		this.writeStateToFile();
 	}
 
+	/* (non-Javadoc)
+	 * @see simulator.ISimulationObject#writeResultToFile()
+	 */
+	public void writeResultToFile() {
+		try {
+			fileWriter.writeResultToFile(SimulationView.printPetrolStationConfiguration(this.petrolStation));
+			fileWriter.writeResultToFile("=================================");
+			fileWriter.writeResultToFile("Financials: ");
+			fileWriter.writeResultToFile("Total money made: " + moneyMade);
+			fileWriter.writeResultToFile("Total money lost: " + moneyLost);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	private void writeStateToFile() {
+		try {
+			fileWriter.writeLogToFile(SimulationView.renderCurrentState(this.petrolStation));
+			fileWriter.writeLogToFile("Total money made: " + moneyMade);
+			fileWriter.writeLogToFile("Total money lost: " + moneyLost);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private void handleDriverFueling(Vehicle vehicle, Pump pump) {
 		if(vehicle.getFuelTankSize() * pump.getTimePerGalon() - pump.getQueue().getTimeActiveVehicleAtPump() <= 0) {
@@ -157,14 +211,6 @@ public class PetrolStationSimulator implements ISimulationObject{
 	private void removeDriverFromPetrolStation(Till till, Pump pumpParkedAt) {
 		till.removePerson();	
 		pumpParkedAt.getQueue().removeVehicle();
-	}
-	
-	/**
-	 * @return an instance of the PetrolStation object that is the subject of this simulation
-	 */
-	public PetrolStation getResult() {
-		// TODO Auto-generated method stub
-		return petrolStation;
 	}
 
 }
